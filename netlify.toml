@@ -4,10 +4,10 @@
 
 [dev]
   publish = "public"
-  
-# If you have specific path handling requirements, you can add them here
-# For example, if you want explicit file paths:
+  functions = "netlify/functions"
+  framework = "#custom"
+
 [[redirects]]
-  from = "/"
-  to = "/index.html"
+  from = "/*"
+  to = "/.netlify/functions/index"
   status = 200

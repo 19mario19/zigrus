@@ -4,7 +4,37 @@ import newDatabase from "../data/Database2.js"
 
 const db = newDatabase()
 
-import { SearchTemplate } from "../../templates/SearchTemplate.js"
+// import { SearchTemplate } from "../../templates/SearchTemplate.js"
+
+function SearchTemplate(object) {
+  return /*html*/ `<h2>Search resutls for: ${object.query}</h2>
+  ${Object.entries(object)
+    .filter((_, index) => index > 0) // remove query filed from the object
+    .map(([type, list], index) => {
+      return /*html*/ `
+      <div className="categories">
+      <h3>${type}</h3>
+      <ul>
+      ${
+        Array.isArray(list) &&
+        list
+          .map((el) => {
+            return /*html*/ `
+            <li>
+            <a href="/${type}/review/${el.id}">
+            ${el.title}
+            </a>
+            </li>
+            `
+          })
+          .join("")
+      }
+          </ul>
+          </div>
+        `
+    })
+    .join("")}`
+}
 
 const data = new Map()
 const containers = new Map()

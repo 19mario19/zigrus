@@ -1,25 +1,38 @@
+//netlify
+import serverless from "serverless-http"
+// main
 import express from "express"
-import { fileURLToPath } from "url"
 import path, { join } from "path"
 import fs from "fs/promises"
-// types
-import { TYPE } from "./public/types/types.js"
-import newDatabase from "./public/data/Database2.js"
-import { Layout } from "./public/layout/Layout.js"
-import { SearchTemplate } from "./templates/SearchTemplate.js"
+// personal
+import { TYPE } from "../../public/types/types.js"
+import newDatabase from "../../public/data/Database2.js"
+import { Layout } from "../../public/layout/Layout.js"
 
+import dotenv from "dotenv"
+dotenv.config()
 
-const app = express()
-const port = 3000
-const db = newDatabase()
+const application = express()
+const router = express.Router()
 
-const __fileName = fileURLToPath(import.meta.url)
-const __folderName = path.dirname(__fileName)
+const NODE_ENV = process.env.NODE_ENV
+const PORT = process.env.PORT
 
-const fullPath = path.join(__folderName, "public/pages", "output")
+const app = NODE_ENV === "development" ? application : router
+
+console.log("process: ", process.cwd())
+
+const __rootFolder = process.cwd()
+
+const fullPath = path.join(
+  __rootFolder,
+  NODE_ENV === "development" ? "public" : " ",
+  "pages",
+  "output",
+)
 
 app.use(express.static("public"))
-app.use("/templates", express.static(path.join(__folderName, "templates")))
+app.use("/templates", express.static(path.join(__rootFolder, "templates")))
 
 app.use((req, _, next) => {
   const route = req.method
@@ -29,14 +42,6 @@ app.use((req, _, next) => {
 
   next()
 })
-
-const d = newDatabase()
-
-const c = d.all.lists
-
-console.log(c)
-
-
 
 // search page, like google's. One input, on pressing submit, sends to the /search?query=[input]
 app.get("/query", async (req, res) => {
@@ -66,41 +71,6 @@ app.get("/query", async (req, res) => {
       )
   } catch (error) {
     console.log(error)
-  }
-})
-
-app.get("/search", async (req, res) => {
-  /**
-   *  as this a is dyncamic route, we have to create files dynamically.
-   *  that is the reason of not creating it using create.js, because that would require an
-   *  infinite number of queries
-   *
-   */
-  const { query } = req.query
-
-  const result = db.search(query)
-
-  const formString = /*html*/ `
-  <div class="form">
-      <form action="/search" method="get">
-        <input type="text" name="query" />
-        <button type="submit">Search</button>
-      </form>
-    </div>
-  `
-
-  const template = Layout(
-    { template: `${formString} ${SearchTemplate(result)}` },
-    "query",
-    `[${query || "search"}]`,
-  )
-
-  try {
-    return res.status(200).send(template)
-  } catch (error) {
-    console.log(error)
-
-    return res.status(500).json({ error })
   }
 })
 
@@ -172,9 +142,17 @@ app.use((req, res, next) => {
   res.status(404).sendFile(path.join(fullPath, "404.html"))
 })
 
-app.listen(port, () => {
-  let date = new Date()
-  // let time = date.toLocaleTimeString()
-  let time = date.toLocaleString()
-  console.log(`${time} -> Listening on port: ${port}.`)
-})
+if (NODE_ENV === "development") {
+  app.listen(PORT, () => {
+    let date = new Date()
+    // let time = date.toLocaleTimeString()
+    let time = date.toLocaleString()
+    console.log(`${time} -> Listening on: localhost:${PORT}.`)
+  })
+}
+
+app.use("/.netlify/functions/server", router)
+
+const handler = serverless(app)
+
+export { handler }
