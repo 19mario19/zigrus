@@ -1,0 +1,654 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+
+/* CSS Reset */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    box-sizing: border-box;
+    color: inherit;
+    background: transparent;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    line-height: 1;
+    background-color: var(--brown-lightest);
+
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* Inherit box-sizing to all elements */
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+    font-family: "Cormorant", sans-serif;
+}
+
+/* Set default box-sizing to border-box */
+html {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Cormorant", sans-serif;
+}
+
+input::placeholder {
+    opacity: .7;
+}
+
+input {
+    border: none;
+    outline: none;
+}
+
+:root {
+    --brown-lightest: #eae0d3;
+    --brown-lighter: #916649;
+    --brown-darker: #554b40;
+    --brown-darkest: #423a32;
+    --brown-dark: #352e28;
+
+    --brown-transparent: #c7ab8375;
+
+    --accent-color: #5f5348;
+    --button-color: #765a45;
+
+    --text-brown: #30302f;
+    --text-brown-lighter: #965f36;
+    --border-color: #a6836c;
+    --border-color-darker: #92674a;
+
+    --pad-large: 5rem;
+    --pad-med: 2.5rem;
+    --pad-small: 1rem;
+
+    --gap-large: 2rem;
+    --gap-med: 1.25rem;
+    --gap-small: .75rem;
+
+
+    --animation-fast: .25s;
+    --animation-medium: .45s;
+    --animation-slow: .75s;
+
+
+
+    --z-index-max: 99999;
+    --z-index-med: 999;
+
+    --container-width: 860px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-weight: 700;
+}
+
+
+
+h1 {
+    font-size: 42px;
+    line-height: 48px;
+
+    font-weight: 800;
+}
+
+
+h2 {
+    font-size: 35px;
+    line-height: 42px;
+
+    font-weight: 600;
+
+
+
+}
+
+h3 {
+    font-size: 26px;
+    line-height: 31px;
+}
+
+h4 {
+    font-size: 18px;
+    line-height: 22px;
+}
+
+h5 {
+    font-size: 15px;
+    line-height: 25px;
+
+}
+
+p {
+    font-size: 15px;
+    line-height: 25px;
+    font-weight: 400;
+}
+
+li {
+    cursor: pointer;
+
+
+
+
+}
+
+
+
+button {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+button.btn {
+    background-color: var(--button-color);
+    padding: 1rem 2rem;
+    font-size: 20px;
+    line-height: 22px;
+    font-weight: 800;
+
+    color: white;
+
+    transition: all .25s ease-in;
+
+    border-radius: 3px;
+
+    &:hover {
+        background-color: var(--accent-color);
+    }
+}
+
+li {
+    cursor: pointer;
+}
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+
+
+}
+
+
+.review {
+
+    h2,
+    h3 {
+        font-family: "Cinzel Decorative", sans-serif;
+        position: relative;
+    }
+
+    h2 {
+        margin: 2rem 0;
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+
+    h3 {
+        margin: 1.5rem 0;
+    }
+
+    h3::after,
+    h2::after {
+        content: "";
+        position: absolute;
+        top: 120%;
+
+        height: 2px;
+        left: 0;
+        right: 0;
+
+        background-color: black;
+    }
+
+    p {
+        font-family: "Cormorant Garamond", serif;
+        font-family: "Literata", serif;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 35px;
+        letter-spacing: 1.05px;
+
+        padding: 1rem 0;
+
+    }
+
+}
+
+.line {
+    width: 60px;
+    height: 1px;
+    border-radius: 15px;
+    background-color: white;
+}
+
+.line.bold {
+    width: 60px;
+    height: 2px;
+    border-radius: 15px;
+    background-color: white;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+
+}
+
+
+
+.container {
+    padding: 1rem 0;
+
+    &.promoted {
+        margin-bottom: 2rem;
+    }
+
+    .title {
+        margin-bottom: 3rem;
+    }
+
+    ul {
+        li {
+
+            a {
+
+                display: flex;
+                justify-content: space-between;
+
+                padding: 1rem;
+            }
+
+        }
+    }
+}
+
+#layout {
+    max-width: var(--container-width);
+    margin: 0 auto;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+
+    /* align-items: center; */
+
+
+    border-bottom: 1px solid;
+
+    padding-top: 1rem;
+
+    h2.title {
+        a {
+            font-size: 30px;
+            font-family: "Cinzel Decorative", sans-serif;
+
+        }
+
+    }
+
+    /* root container */
+    ul.parent {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+
+        margin: .3rem;
+
+        /* parents items*/
+        /* movie tv-series book and categories*/
+        li.parent {
+            position: relative;
+
+
+            &:hover ul.categories {
+                z-index: var(--z-index-max);
+                opacity: 1;
+
+            }
+
+            &.category-item,
+            &.search-item {
+                background-color: var(--brown-lighter);
+                color: white;
+
+                border-radius: 5px;
+
+
+                transition: all .3s ease-in-out;
+
+                &:hover {
+                    opacity: .9;
+                    background-color: var(--accent-color);
+                }
+            }
+
+            &.category-item {
+                background-color: var(--brown-lighter);
+
+            }
+
+            &.search-item {
+                background-color: var(--brown-darkest);
+            }
+
+
+            /* categories -> movies, tv-series, books */
+            ul.categories {
+
+
+                opacity: 0;
+                z-index: -1;
+                /* opacity: 1; */
+
+                /* to remove */
+                /* opacity: 1;
+                transform: translate(0);
+                z-index: var(--z-index-max); */
+
+                background-color: var(--brown-dark);
+
+                position: absolute;
+                top: 100%;
+                right: 0;
+                z-index: -99999999;
+
+
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                padding: .55rem;
+                border-radius: 3px;
+
+                li {
+
+                    border-radius: 3px;
+
+                    a {
+                        padding: 1rem;
+                    }
+
+                    /* transition: all .15s ease; */
+                }
+
+                li.type {
+
+                    border-bottom: 2px solid var(--brown-dark);
+
+
+                    a {
+                        display: inline-block;
+                        padding: .75rem;
+
+                        color: white;
+
+                    }
+                }
+
+                li.type:hover+li.wrapper ul {
+                    opacity: 1;
+                    z-index: 999;
+                    /* transform: translateY(0%); */
+                    /* height: auto; */
+
+                }
+
+                li.wrapper {
+                    background-color: var(--brown-transparent);
+
+                    /* opacity: 0;  */
+                    z-index: -1;
+
+
+                    overflow: hidden;
+
+
+                    &:hover ul {
+                        opacity: 1;
+                        z-index: 999;
+                        /* transform: translateY(0%); */
+                        height: auto;
+                    }
+
+
+
+                    ul {
+
+                        height: 0;
+                        /* check here */
+                        height: auto;
+
+                        /* transform: translateY(-100%); */
+                        z-index: -1;
+                        opacity: 0;
+                        opacity: 1;
+
+                        transition: all .55s ease;
+                        /* border: 2px solid; */
+
+
+
+                        li.category {
+
+
+                            a {
+                                display: inline-block;
+                                width: 100%;
+                                color: white;
+                                padding: .5rem;
+                                /* border: 1px solid; */
+
+                                &:hover {
+                                    background-color: var(--accent-color);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                li.type:hover+li.wrapper,
+                li.wrapper:hover {
+
+                    opacity: 1;
+                    z-index: 99999;
+                }
+
+            }
+        }
+
+    }
+
+
+
+    .title a {
+        color: black;
+    }
+}
+
+#search {
+    form {
+        input {
+            height: 50px;
+            width: 80%;
+            margin: 0 auto;
+            font-size: 30px;
+            margin: 2rem 3rem;
+            padding: 1rem;
+            border-radius: 10px;
+            outline: 2px solid var(--brown-dark);
+            border: 2px solid white;
+        }
+
+        button {
+            background-color: #30302f;
+            color: white;
+
+        }
+    }
+
+    ul {
+        margin: 2rem;
+
+        li {
+            font-size: 20px;
+            margin-bottom: .5rem;
+        }
+    }
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+
+    div {
+
+        margin: 0 auto;
+    }
+}

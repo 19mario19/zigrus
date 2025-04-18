@@ -1,0 +1,13 @@
+[build]
+  publish = "public"
+  functions = "netlify/functions"
+
+[dev]
+  publish = "public"
+  
+# If you have specific path handling requirements, you can add them here
+# For example, if you want explicit file paths:
+[[redirects]]
+  from = "/"
+  to = "/index.html"
+  status = 200
