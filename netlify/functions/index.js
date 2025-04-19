@@ -6,7 +6,6 @@ import path, { join } from "path"
 import fs from "fs/promises"
 // personal
 import { TYPE } from "../../public/types/types.js"
-import newDatabase from "../../public/data/Database2.js"
 import { Layout } from "../../public/layout/Layout.js"
 
 import dotenv from "dotenv"
@@ -26,13 +25,12 @@ const __rootFolder = process.cwd()
 
 const fullPath = path.join(
   __rootFolder,
-  NODE_ENV === "development" ? "public" : " ",
+  NODE_ENV === "development" ? "public" : "",
   "pages",
   "output",
 )
 
-app.use(express.static("public"))
-app.use("/templates", express.static(path.join(__rootFolder, "templates")))
+app.use(express.static(path.join(__rootFolder, "public")))
 
 app.use((req, _, next) => {
   const route = req.method
@@ -43,36 +41,6 @@ app.use((req, _, next) => {
   next()
 })
 
-// search page, like google's. One input, on pressing submit, sends to the /search?query=[input]
-app.get("/query", async (req, res) => {
-  // layout -> template [just an input]
-  const template = {
-    header: /*html*/ `
-        <script src="/js/script.js" defer type="module"></script>
-    `,
-    html: /*html*/ `
-    <div class="form" id="search">
-        <form >
-          <input type="text" name="query" />
-        </form>
-      </div>
-    `,
-  }
-
-  try {
-    return res
-      .status(200)
-      .send(
-        Layout(
-          { header: template.header, template: template.html },
-          "input",
-          "query",
-        ),
-      )
-  } catch (error) {
-    console.log(error)
-  }
-})
 
 app.get("/", (req, res) => {
   return res.sendFile(join(fullPath, "index.html"))
@@ -143,7 +111,7 @@ app.use((req, res, next) => {
 })
 
 if (NODE_ENV === "development") {
-  app.listen(PORT, () => {
+  app.listen(PORT ?? 3000, () => {
     let date = new Date()
     // let time = date.toLocaleTimeString()
     let time = date.toLocaleString()
@@ -151,8 +119,6 @@ if (NODE_ENV === "development") {
   })
 }
 
-app.use("/.netlify/functions/server", router)
+application.use("/.netlify/functions/server", router)
 
-const handler = serverless(app)
-
-export { handler }
+export const handler = serverless(application)

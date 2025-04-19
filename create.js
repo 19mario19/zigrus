@@ -7,9 +7,9 @@ const db = newDatabase()
 
 // templates
 import { Layout } from "./public/layout/Layout.js"
-import { CategoryTemplate } from "./templates/CategoryTemplate.js"
-import { CategoryTypeTemplate } from "./templates/CategoryTypeTemplate.js"
-import { AllCategoriesTemplate } from "./templates/AllCategoriesTemplate.js"
+import { CategoryTemplate } from "./public/templates/CategoryTemplate.js"
+import { CategoryTypeTemplate } from "./public/templates/CategoryTypeTemplate.js"
+import { AllCategoriesTemplate } from "./public/templates/AllCategoriesTemplate.js"
 
 // when a new movie is created in [data], it should create a file for it
 // without the need to remove the "output" folder
@@ -22,6 +22,39 @@ const fullPath = path.join(__folderName, "public/pages", "output")
 // const d = db.getAllDatabases()
 const d = db.all.lists
 const c = db.all.categories()
+
+async function createQuery() {
+  // layout -> template [just an input]
+  const template = {
+    header: /*html*/ `
+        <script src="/js/script.js" defer type="module"></script>
+    `,
+    html: /*html*/ `
+    <div class="form" id="search">
+        <form >
+          <input type="text" name="query" />
+        </form>
+      </div>
+    `,
+  }
+
+  const filePath = path.join(fullPath, "query")
+
+  try {
+    await fs.mkdir(filePath, { recursive: true })
+    await fs.writeFile(
+      path.join(filePath, "query.html"),
+      Layout(
+        { header: template.header, template: template.html },
+        "input",
+        "query",
+      ),
+      "utf-8",
+    )
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 async function createFiles() {
   if (!(await checkFileExists(fullPath))) await fs.mkdir(fullPath)
@@ -224,6 +257,7 @@ function init(files = true, categoryFiles = true, createDefaultFiles = true) {
   files && createFiles()
   categoryFiles && createCategoriesFiles()
   createDefaultFiles && defaultFilesInit()
+  createQuery()
 }
 
 init()

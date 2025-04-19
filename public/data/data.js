@@ -408,7 +408,7 @@ const data = {
       title: "The Last of Us Part II",
       author: "Naughty Dog",
       year: 2020,
-      category: "Action-adventure",
+      category: "Adventure",
       rating: 4,
     },
     {
@@ -424,7 +424,7 @@ const data = {
       title: "Grand Theft Auto V",
       author: "Rockstar Games",
       year: 2013,
-      category: "Action-adventure",
+      category: "Action",
       rating: 5,
     },
     {
@@ -432,7 +432,7 @@ const data = {
       title: "Cyberpunk 2077",
       author: "CD Projekt Red",
       year: 2020,
-      category: "Action role-playing",
+      category: "Action",
       rating: 3,
     },
     {
@@ -448,7 +448,7 @@ const data = {
       title: "Control",
       author: "Remedy Entertainment",
       year: 2019,
-      category: "Action-adventure",
+      category: "Adventure",
       rating: 4,
     },
     {
@@ -456,7 +456,7 @@ const data = {
       title: "Disco Elysium",
       author: "ZA/UM",
       year: 2019,
-      category: "Role-playing",
+      category: "RolePlaying",
       rating: 5,
     },
     {
@@ -464,7 +464,7 @@ const data = {
       title: "Hades",
       author: "Supergiant Games",
       year: 2020,
-      category: "Action roguelike",
+      category: "Action",
       rating: 5,
     },
     {
@@ -472,7 +472,7 @@ const data = {
       title: "Sekiro: Shadows Die Twice",
       author: "FromSoftware",
       year: 2019,
-      category: "Action-adventure",
+      category: "Action",
       rating: 4,
     },
     {
@@ -480,7 +480,7 @@ const data = {
       title: "Outer Wilds",
       author: "Mobius Digital",
       year: 2019,
-      category: "Action-adventure",
+      category: "Action",
       rating: 5,
     },
   ],

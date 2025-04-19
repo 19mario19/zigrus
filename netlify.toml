@@ -1,13 +1,139 @@
+# [build]
+#   publish = "public"
+#   functions = "netlify/functions"
+
+# [dev]
+#   publish = "public/"
+
+# [[redirects]]
+#   from = "/"
+#   to = "pages/output/index.html"
+#   status = 200
+
+# [[redirects]]
+#   from = "/"
+#   to = "pages/output/:slug"
+#   status = 200
+
+
+# [build]
+#   publish = "public"
+#   functions = "netlify/functions"
+
+# [dev]
+#   publish = "public/"
+
+# [[redirects]]
+#   from = "/"
+#   to = "/pages/output/index.html"
+#   status = 200
+
+# [[redirects]]
+#   from = "/books"
+#   to = "/pages/output/books/books.html"
+#   status = 200
+# [[redirects]]
+#   from = "/tv-series"
+#   to = "/pages/output/tv-series/tv-series.html"
+#   status = 200
+
+# [[redirects]]
+#   from = "/movies"
+#   to = "/pages/output/movies/movies.html"
+#   status = 200
+
+# # Add redirects for other top-level types based on your TYPE object
+# # Assuming your TYPE object in /public/types/types.js has values like "books", "movies", etc.
+# # Example (you'll need to add all your types here):
+# [[redirects]]
+#   from = "/dynamic" # If you have a top-level "dynamic"
+#   to = "/pages/output/dynamic/dynamic.html"
+#   status = 200
+
+# [[redirects]]
+#   from = "/category"
+#   to = "/pages/output/categories/all/categories.html"
+#   status = 200
+
+# [[redirects]]
+#   from = "/books/category/"
+#   to = "/pages/output/categories/books/books.html"
+#   status = 200
+
+# [[redirects]]
+#   from = "/movies/category/"
+#   to = "/pages/output/categories/movies/movies.html"
+#   status = 200
+
+# [[redirects]]
+#   from = "/:type/category/:category"
+#   to = "/pages/output/categories/:type/:category/:type-:category.html"
+#   status = 200
+
+# [[redirects]]
+#   from = "/books/review/:id"
+#   to = "/pages/output/books/dynamic/books-:id/books-:id.html"
+#   status = 200
+
+# [[redirects]]
+#   from = "/tv-series/review/:id"
+#   to = "/pages/output/tv-series/dynamic/tv-series-:id/tv-series-:id.html"
+#   status = 200
+
+# [[redirects]]
+#   from = "/movies/review/:id"
+#   to = "/pages/output/movies/dynamic/movies-:id/movies-:id.html"
+#   status = 200
+
+# # Add more redirects for all your dynamic routes and category structures
+
+
 [build]
   publish = "public"
   functions = "netlify/functions"
 
 [dev]
-  publish = "public"
-  functions = "netlify/functions"
-  framework = "#custom"
+  publish = "public/"
+
+# REDIRECTS
 
 [[redirects]]
-  from = "/*"
-  to = "/.netlify/functions/index"
+  from = "/query"
+  to = "/pages/output/query/query.html"
+  status = 200
+
+# Home page
+[[redirects]]
+  from = "/"
+  to = "/pages/output/index.html"
+  status = 200
+
+# Main category page
+[[redirects]]
+  from = "/category"
+  to = "/pages/output/categories/all/categories.html"
+  status = 200
+
+# Type pages
+[[redirects]]
+  from = "/:type"
+  to = "/pages/output/:type/:type.html"
+  status = 200
+
+# Type category index
+[[redirects]]
+  from = "/:type/category"
+  to = "/pages/output/categories/:type/:type.html" 
+  status = 200
+
+# Specific category pages
+[[redirects]]
+  from = "/:type/category/:category"
+  to = "/pages/output/categories/:type/:category/:type-:category.html"
+  status = 200
+
+# Review pages
+[[redirects]]
+  from = "/:type/review/:id"
+  to = "/pages/output/:type/dynamic/:type-:id/:type-:id.html"
   status = 200
